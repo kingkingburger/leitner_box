@@ -15,8 +15,6 @@ export default function DashboardPage() {
   return (
     <>
       <div className="hidden flex-col md:flex">
-        {/*해더*/}
-        <NavigationHeader />
         {/*본문*/}
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
