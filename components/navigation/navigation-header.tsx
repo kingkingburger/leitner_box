@@ -3,6 +3,7 @@ import { MainNav } from "@/components/main-nav";
 import { Search } from "@/components/search";
 import { UserNav } from "@/components/user-nav";
 import { ModeToggle } from "@/components/navigation/mode-togle";
+import { NavigationCreateCount } from "@/components/navigation/navigation-create-account";
 
 export const NavigationHeader = () => {
   return (
@@ -15,6 +16,7 @@ export const NavigationHeader = () => {
           <div className="ml-auto flex items-center space-x-4">
             <Search />
             <UserNav />
+            <NavigationCreateCount />
             <ModeToggle />
           </div>
         </div>

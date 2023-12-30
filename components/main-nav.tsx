@@ -14,7 +14,6 @@ export function MainNav({
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
       {...props}
     >
-      <NavigationCreateCount />
       <button
         // href="/examples/dashboard"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"

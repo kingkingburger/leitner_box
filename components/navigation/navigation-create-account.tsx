@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { LogIn } from "lucide-react";
 
 export const NavigationCreateCount = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ export const NavigationCreateCount = () => {
       onClick={onClick}
       className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
     >
-      login
+      <LogIn className="h-6 w-61`" />
     </button>
   );
 };
