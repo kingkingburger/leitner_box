@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { NavigationCreateCount } from "@/components/navigation/navigation-create-account";
+import { NavigationCreateMemoryCard } from "@/components/navigation/navigation-create-memory-card";
 
 export function MainNav({
   className,
@@ -14,12 +15,7 @@ export function MainNav({
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
       {...props}
     >
-      <button
-        // href="/examples/dashboard"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Customers
-      </button>
+      <NavigationCreateMemoryCard />
       <Link
         href="/examples/dashboard"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
