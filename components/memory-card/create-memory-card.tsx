@@ -26,6 +26,7 @@ export function CreateMemoryCard() {
           <div className="grid gap-2">
             <Label className="p-1">제목</Label>
             <Input
+
               id="text"
               type="text"
               placeholder="제목을 설정해주세요"
