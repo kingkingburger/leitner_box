@@ -27,11 +27,11 @@ export function Login() {
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="grid grid-cols-2 gap-6">
-            <Button variant="outline">
+            <Button variant="outline" className="border-4">
               <GithubIcon className="mr-2 h-4 w-4" />
               Github
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="border-4">
               <Icons.google className="mr-2 h-4 w-4" />
               Google
             </Button>
@@ -49,14 +49,14 @@ export function Login() {
 
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" />
+            <Input id="email" type="email" placeholder="m@example.com" className="border-4"/>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" />
+            <Input id="password" type="password" className="border-4"/>
           </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex justify-end">
           <Button>Create account</Button>
         </CardFooter>
       </Card>
