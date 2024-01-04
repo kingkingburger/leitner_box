@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
-import { NavigationCreateCount } from "@/components/navigation/navigation-create-account";
-import { NavigationCreateMemoryCard } from "@/components/navigation/navigation-create-memory-card";
+import {cn} from "@/lib/utils";
+import {NavigationCreateMemoryCard} from "@/components/navigation/navigation-create-memory-card";
+import {NavigationHome} from "@/components/navigation/navigation-home";
 
-export function MainNav({
+export function LeftNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
@@ -15,6 +15,7 @@ export function MainNav({
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
       {...props}
     >
+      <NavigationHome/>
       <NavigationCreateMemoryCard />
       <Link
         href="/examples/dashboard"

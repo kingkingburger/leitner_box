@@ -19,11 +19,9 @@ export function CreateMemoryCard() {
           <CardTitle className="text-2xl">카드 만들기</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
+            <div className="inset-0 flex items-center">
               <span className="w-full border"></span>
             </div>
-          </div>
           <div className="grid gap-2">
             <Label>제목</Label>
             <Input id="text" type="text" placeholder="제목을 설정해주세요" />
