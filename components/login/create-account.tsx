@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 export function CreateAccount() {
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <Card>
+      <Card className="border-4">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Create an account</CardTitle>
           <CardDescription className="grid grid-cols-2 gap-6">
@@ -27,11 +27,11 @@ export function CreateAccount() {
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="grid grid-cols-2 gap-6">
-            <Button variant="outline">
+            <Button variant="outline" className="border-4">
               <GithubIcon className="mr-2 h-4 w-4" />
               Github
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="border-4">
               <Icons.google className="mr-2 h-4 w-4" />
               Google
             </Button>
@@ -49,15 +49,15 @@ export function CreateAccount() {
 
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" />
+            <Input id="email" type="email" placeholder="m@example.com" className="border-4"/>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" />
+            <Input id="password" type="password" className="border-4" />
           </div>
         </CardContent>
-        <CardFooter>
-          <Button>Create account</Button>
+        <CardFooter className="flex justify-end">
+          <Button>Login</Button>
         </CardFooter>
       </Card>
     </div>
