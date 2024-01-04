@@ -49,7 +49,12 @@ export function CreateAccount() {
 
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" className="border-4"/>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              className="border-4"
+            />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
