@@ -12,12 +12,32 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const formSchema = z.object({});
+const formSchema = z.object({
+  title: z.string().min(1, {
+    message: "글자를 입력해주세요",
+  }),
+  content: z.string().min(1, {
+    message: "내용을 입력해주세요",
+  }),
+});
 
 export function CreateMemoryCard() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "내용",
+      content: "내용",
+    },
+  });
+
   return (
     <div className="flex justify-center">
+      {/*<Form {...form}></Form>*/}
+
       <Card className="w-3/4 border-4">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">카드 만들기</CardTitle>
