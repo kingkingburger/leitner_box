@@ -11,6 +11,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { z } from "zod";
+
+const formSchema = z.object({});
 
 export function CreateMemoryCard() {
   return (
@@ -26,7 +29,6 @@ export function CreateMemoryCard() {
           <div className="grid gap-2">
             <Label className="p-1">제목</Label>
             <Input
-
               id="text"
               type="text"
               placeholder="제목을 설정해주세요"
