@@ -43,6 +43,7 @@ export function CreateMemoryCard() {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log("git reponseability test");
     console.log(values);
   };
   return (
