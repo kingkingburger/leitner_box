@@ -12,7 +12,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -29,19 +37,57 @@ export function CreateMemoryCard() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "내용",
-      content: "내용",
+      title: "",
+      content: "",
     },
   });
 
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  };
   return (
     <div className="flex justify-center">
-      {/*<Form {...form}></Form>*/}
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>제목</FormLabel>
+                <FormControl>
+                  <Input placeholder="제목을 입력해주세요" {...form} />
+                </FormControl>
+                <FormDescription>제목을 입력해주세요</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
 
       <Card className="w-3/4 border-4">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">카드 만들기</CardTitle>
         </CardHeader>
+        {/*<Form {...form}>*/}
+        {/*  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">*/}
+        {/*    <FormField*/}
+        {/*      control={form.control}*/}
+        {/*      name="title"*/}
+        {/*      render={({ field }) => (*/}
+        {/*        <FormItem>*/}
+        {/*          <FormLabel>제목</FormLabel>*/}
+        {/*          <FormControl>*/}
+        {/*            <Input placeholder="제목을 입력해주세요" {...form} />*/}
+        {/*          </FormControl>*/}
+        {/*          <FormDescription>제목을 입력해주세요</FormDescription>*/}
+        {/*          <FormMessage />*/}
+        {/*        </FormItem>*/}
+        {/*      )}*/}
+        {/*    />*/}
+        {/*  </form>*/}
+        {/*</Form>*/}
         <CardContent className="grid gap-4">
           <div className="inset-0 flex items-center">
             <span className="w-full border"></span>
