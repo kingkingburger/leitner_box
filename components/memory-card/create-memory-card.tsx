@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -42,10 +43,12 @@ export function CreateMemoryCard() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log("git reponseability test2");
     console.log(values);
+    const url = await axios.post("/api/create-memory-card");
   };
+
   return (
     <div className="flex justify-center">
       <Card className="w-3/4 border-4">
