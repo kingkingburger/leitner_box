@@ -1,4 +1,6 @@
 "use client";
+import qs from "query-string";
+import axios from "axios";
 
 import {
   Card,
@@ -9,13 +11,11 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -35,6 +35,9 @@ const formSchema = z.object({
 });
 
 export function CreateMemoryCard() {
+  const router = useRouter();
+  const params = useParams();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,7 +49,14 @@ export function CreateMemoryCard() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log("git reponseability test2");
     console.log(values);
-    const url = await axios.post("/api/create-memory-card");
+    const url = qs.stringifyUrl({
+      url: "/api/create-memory-card",
+      // query: {
+      //   userId: params,
+      // },
+    });
+
+    await axios.post(url);
   };
 
   return (
