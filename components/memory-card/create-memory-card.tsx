@@ -24,6 +24,25 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+async function addCard(title: string, content: string) {
+  const { data, error } = await supabase
+    .from("card")
+    .insert([{ title: title, content: content }]);
+
+  if (error) {
+    console.error("Error inserting data", error);
+    return;
+  }
+
+  return data;
+}
 
 const formSchema = z.object({
   title: z.string().min(1, {
