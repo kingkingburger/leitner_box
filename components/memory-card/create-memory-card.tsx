@@ -79,7 +79,7 @@ export function CreateMemoryCard() {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center pt-4">
       <Card className="w-3/4 border-4">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">카드 만들기</CardTitle>
