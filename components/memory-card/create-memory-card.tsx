@@ -68,14 +68,14 @@ export function CreateMemoryCard() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log("git reponseability test2");
     console.log(values);
-    const url = qs.stringifyUrl({
-      url: "/api/create-memory-card",
-      // query: {
-      //   userId: params,
-      // },
-    });
+    // const url = qs.stringifyUrl({
+    //   url: "/api/create-memory-card",
+    //   // query: {
+    //   //   userId: params,
+    //   // },
+    // });
 
-    await axios.post(url);
+    // await axios.post(url);
   };
 
   return (
@@ -96,8 +96,8 @@ export function CreateMemoryCard() {
                     <FormControl>
                       <Input
                         placeholder="제목을 입력해주세요"
-                        {...form}
                         className="border-4"
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
@@ -114,19 +114,20 @@ export function CreateMemoryCard() {
                       <Textarea
                         placeholder="내용을 작성해주세요"
                         className="border-4 h-80"
-                        {...form}
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              <Button type="submit">Submit</Button>
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex justify-end">
-          <Button>카드 생성</Button>
-        </CardFooter>
+        {/*<CardFooter className="flex justify-end">*/}
+        {/*  <Button>카드 생성</Button>*/}
+        {/*</CardFooter>*/}
       </Card>
     </div>
   );
