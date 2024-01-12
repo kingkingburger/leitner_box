@@ -41,6 +41,7 @@ async function addCard(title: string, content: string) {
     return;
   }
 
+  console.log("Data inserted", data);
   return data;
 }
 
@@ -66,16 +67,9 @@ export function CreateMemoryCard() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("git reponseability test2");
-    console.log(values);
-    // const url = qs.stringifyUrl({
-    //   url: "/api/create-memory-card",
-    //   // query: {
-    //   //   userId: params,
-    //   // },
-    // });
-
-    // await axios.post(url);
+    console.log("values.title = ", values.title);
+    console.log("values.content = ", values.content);
+    await addCard(values.title, values.content);
   };
 
   return (
