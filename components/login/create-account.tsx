@@ -2,19 +2,23 @@
 
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-import { GithubIcon } from "lucide-react";
-import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 const formSchema = z.object({
   email: z.string().min(1, {
@@ -26,6 +30,18 @@ const formSchema = z.object({
 });
 
 export function CreateAccount() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("values = ", values);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Card className="border-4">
@@ -35,45 +51,47 @@ export function CreateAccount() {
             Enter your email below to create your account
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className="grid grid-cols-2 gap-6">
-            <Button variant="outline" className="border-4">
-              <GithubIcon className="mr-2 h-4 w-4" />
-              Github
-            </Button>
-            <Button variant="outline" className="border-4">
-              <Icons.google className="mr-2 h-4 w-4" />
-              Google
-            </Button>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border"></span>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                Or Continue with
-              </span>
-            </div>
-          </div>
-
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              className="border-4"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>이메일</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="이메일을 입력해주세요"
+                      className="border-4"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" className="border-4" />
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-end">
-          <Button>Login</Button>
-        </CardFooter>
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>비밀번호</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="비밀번호을 작성해주세요"
+                      className="border-4"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Create Account</Button>
+          </form>
+        </Form>
       </Card>
     </div>
   );
