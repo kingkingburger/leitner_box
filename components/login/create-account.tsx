@@ -14,6 +14,16 @@ import { GithubIcon } from "lucide-react";
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { z } from "zod";
+
+const formSchema = z.object({
+  email: z.string().min(1, {
+    message: "글자를 입력해주세요",
+  }),
+  password: z.string().min(1, {
+    message: "내용을 입력해주세요",
+  }),
+});
 
 export function CreateAccount() {
   return (
