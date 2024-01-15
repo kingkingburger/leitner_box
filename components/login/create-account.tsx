@@ -19,6 +19,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { createClient } from "@/lib/supabase/client";
+import { toast } from "sonner";
+
+const supabase = createClient();
 
 const formSchema = z.object({
   email: z.string().min(1, {
@@ -28,6 +32,26 @@ const formSchema = z.object({
     message: "내용을 입력해주세요",
   }),
 });
+
+async function signUpNewUser(email: string, password: string) {
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      emailRedirectTo: "https://example.com/welcome",
+    },
+  });
+
+  if (error) {
+    toast(`${error}`, {
+      description: "계정 생성 에러",
+      action: {
+        label: "확인",
+        onClick: () => console.log("Undo"),
+      },
+    });
+  }
+}
 
 export function CreateAccount() {
   const form = useForm({
@@ -39,7 +63,7 @@ export function CreateAccount() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("values = ", values);
+    await signUpNewUser(values.email, values.password);
   };
 
   return (
