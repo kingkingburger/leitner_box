@@ -9,8 +9,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/data-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
+import { currentProfile } from "@/lib/current-profile";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const user = await currentProfile();
+  console.log("user = ", user);
+
   return (
     <>
       <div className="hidden flex-col md:flex">

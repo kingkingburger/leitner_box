@@ -1,19 +1,12 @@
 "use client";
 
 import { z } from "zod";
-import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,8 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-const supabase = createClient();
+import { supabase } from "@/lib/supabase/supabase";
 
 const formSchema = z.object({
   email: z.string().min(1, {

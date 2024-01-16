@@ -11,6 +11,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -25,8 +26,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-const supabase = createClient();
+import { supabase } from "@/lib/supabase/supabase";
 
 const formSchema = z.object({
   email: z.string().min(1, {
@@ -68,12 +68,15 @@ export function Login() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("values = ", values);
     const user = await signInWithEmail(values.email, values.password);
-    console.log("user = ", user);
+
     if (user) {
       router.push("/");
     }
+  };
+
+  const gotoCreateAccountPage = () => {
+    return router.push("/create-account");
   };
 
   return (
@@ -81,9 +84,6 @@ export function Login() {
       <Card className="border-4">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Login</CardTitle>
-          {/*<CardDescription className="grid grid-cols-2 gap-6">*/}
-          {/*  Enter your email below to create your account*/}
-          {/*</CardDescription>*/}
         </CardHeader>
         <CardContent className="grid gap-4">
           <Form {...form}>
@@ -124,7 +124,10 @@ export function Login() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Login</Button>
+              <div className="flex justify-between">
+                <Button onClick={gotoCreateAccountPage}>회원가입</Button>
+                <Button type="submit">Login</Button>
+              </div>
             </form>
           </Form>
         </CardContent>
