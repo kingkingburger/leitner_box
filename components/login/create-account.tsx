@@ -1,5 +1,12 @@
 "use client";
 
+import { z } from "zod";
+import { createClient } from "@/lib/supabase/client";
+import { toast } from "sonner";
+
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+
 import {
   Card,
   CardContent,
@@ -9,8 +16,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -20,8 +25,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { createClient } from "@/lib/supabase/client";
-import { toast } from "sonner";
 
 const supabase = createClient();
 
@@ -52,9 +55,13 @@ async function signUpNewUser(email: string, password: string) {
       },
     });
   }
+
+  return data;
 }
 
 export function CreateAccount() {
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,7 +71,11 @@ export function CreateAccount() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    await signUpNewUser(values.email, values.password);
+    const user = await signUpNewUser(values.email, values.password);
+
+    if (user) {
+      router.push("/login");
+    }
   };
 
   return (
