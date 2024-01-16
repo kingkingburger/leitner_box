@@ -83,9 +83,9 @@ export function CreateAccount() {
       <Card className="border-4">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Create an account</CardTitle>
-          <CardDescription className="grid grid-cols-2 gap-6">
-            Enter your email below to create your account
-          </CardDescription>
+          {/*<CardDescription className="grid grid-cols-2 gap-6">*/}
+          {/*  Enter your email below to create your account*/}
+          {/*</CardDescription>*/}
         </CardHeader>
         <CardContent className="grid gap-4">
           <Form {...form}>
