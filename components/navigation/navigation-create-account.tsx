@@ -3,11 +3,11 @@
 import { useRouter } from "next/navigation";
 import { LogIn } from "lucide-react";
 
-export const NavigationCreateCount = () => {
+export const NavigationCreateAccount = () => {
   const router = useRouter();
 
   const onClick = () => {
-    router.push(`/login`);
+    router.push(`/create-account`);
   };
 
   return (
