@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -9,11 +11,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/data-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
-import { currentProfile } from "@/lib/current-profile";
+import { currentProfile, User } from "@/lib/current-profile";
+import { useEffect, useState } from "react";
 
-export default async function DashboardPage() {
-  const user = await currentProfile();
-  console.log("user = ", user);
+export default function DashboardPage() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const loadUserProfile = async () => {
+      const userProfile = await currentProfile();
+      console.log("userProfile = ", userProfile);
+      setUser(userProfile);
+    };
+
+    loadUserProfile();
+    console.log("user = ", user);
+  }, []);
 
   return (
     <>

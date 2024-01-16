@@ -53,6 +53,7 @@ async function signInWithEmail(email: string, password: string) {
     });
   }
 
+  console.log("login data = ", data);
   return data;
 }
 
