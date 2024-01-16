@@ -12,7 +12,8 @@ import { CalendarDateRangePicker } from "@/components/data-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
 import { currentProfile, User } from "@/lib/current-profile";
-import { useEffect, useState } from "react";
+import { initialProfile } from "@/lib/initial-profile";
+import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
@@ -20,13 +21,13 @@ export default function DashboardPage() {
   useEffect(() => {
     const loadUserProfile = async () => {
       const userProfile = await currentProfile();
-      console.log("userProfile = ", userProfile);
       setUser(userProfile);
     };
 
     loadUserProfile();
-    console.log("user = ", user);
   }, []);
+
+  console.log("user = ", user?.data?.session?.user);
 
   return (
     <>
