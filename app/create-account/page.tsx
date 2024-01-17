@@ -1,5 +1,5 @@
 import { CreateAccount } from "@/components/login/create-account";
 
-export default function loginPage() {
+export default function createAccountPage() {
   return <CreateAccount />;
 }

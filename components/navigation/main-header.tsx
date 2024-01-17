@@ -1,3 +1,5 @@
+"use client";
+
 import { LeftNav } from "@/components/left-nav";
 import { Search } from "@/components/search";
 import { UserNav } from "@/components/user-nav";
@@ -8,7 +10,8 @@ import { currentProfile } from "@/lib/current-profile";
 export const MainHeader = async () => {
   const currentUser = await currentProfile();
 
-  console.log("currentUser = ", currentUser);
+  const session = currentUser?.data?.session;
+  console.log("currentUser = ", currentUser?.data?.session);
 
   return (
     <>
@@ -19,7 +22,7 @@ export const MainHeader = async () => {
           <div className="ml-auto flex items-center space-x-4">
             <Search />
             <UserNav />
-            <NavigationLogin />
+            {session ? <NavigationLogin /> : null}
             <ModeToggle />
           </div>
         </div>

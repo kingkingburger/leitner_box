@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -13,19 +11,19 @@ import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
 import { currentProfile, User } from "@/lib/current-profile";
 import { initialProfile } from "@/lib/initial-profile";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const loadUserProfile = async () => {
-      const userProfile = await currentProfile();
-      setUser(userProfile);
-    };
-
-    loadUserProfile();
-  }, []);
+  // const [user, setUser] = useState<User | null>(null);
+  //
+  // useEffect(() => {
+  //   const loadUserProfile = async () => {
+  //     const userProfile = await currentProfile();
+  //     setUser(userProfile);
+  //   };
+  //
+  //   loadUserProfile();
+  // }, []);
 
   return (
     <>

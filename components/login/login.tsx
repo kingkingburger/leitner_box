@@ -1,3 +1,5 @@
+"use client";
+
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
@@ -50,7 +52,6 @@ async function signInWithEmail(email: string, password: string) {
       },
     });
   }
-
   return data;
 }
 
