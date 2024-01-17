@@ -10,7 +10,7 @@ export type User =
 export const currentProfile = async () => {
   const user = await supabase.auth.getSession();
 
-  if (user && !user?.data?.session) redirect("/login");
+  // if (user && !user?.data?.session) redirect("/login");
 
   return user;
 };

@@ -27,8 +27,6 @@ export default function DashboardPage() {
     loadUserProfile();
   }, []);
 
-  console.log("user = ", user?.data?.session?.user);
-
   return (
     <>
       <div className="hidden flex-col md:flex">

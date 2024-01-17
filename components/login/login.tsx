@@ -1,5 +1,3 @@
-"use client";
-
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";

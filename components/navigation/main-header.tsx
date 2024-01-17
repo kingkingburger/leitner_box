@@ -3,8 +3,13 @@ import { Search } from "@/components/search";
 import { UserNav } from "@/components/user-nav";
 import { ModeToggle } from "@/components/navigation/mode-togle";
 import { NavigationLogin } from "@/components/navigation/navigation-login";
+import { currentProfile } from "@/lib/current-profile";
 
-export const MainHeader = () => {
+export const MainHeader = async () => {
+  const currentUser = await currentProfile();
+
+  console.log("currentUser = ", currentUser);
+
   return (
     <>
       {/*해더*/}
