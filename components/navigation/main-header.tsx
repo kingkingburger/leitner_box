@@ -11,7 +11,6 @@ export const MainHeader = async () => {
   const currentUser = await currentProfile();
 
   const session = currentUser?.data?.session;
-  console.log("currentUser = ", currentUser?.data?.session);
 
   return (
     <>

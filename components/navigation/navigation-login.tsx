@@ -11,7 +11,7 @@ interface NavigationLoginProps {
 
 export const NavigationLogin = ({ session }: NavigationLoginProps) => {
   const [isMounted, setIsMounted] = useState(false);
-
+  console.log("isMounted = ", isMounted);
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -37,7 +37,6 @@ export const NavigationLogin = ({ session }: NavigationLoginProps) => {
       ) : (
         <LogIn className="h-6 w-61`" />
       )}
-      {/*<LogIn className="h-6 w-61`" />*/}
     </button>
   );
 };
