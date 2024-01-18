@@ -22,7 +22,7 @@ export const MainHeader = async () => {
           <div className="ml-auto flex items-center space-x-4">
             <Search />
             <UserNav />
-            {session ? <NavigationLogin /> : null}
+            {session ? <NavigationLogin session={session} /> : null}
             <ModeToggle />
           </div>
         </div>
