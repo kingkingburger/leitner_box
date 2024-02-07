@@ -16,21 +16,25 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { PostgrestSingleResponse } from "@supabase/supabase-js";
+import { toast } from "sonner";
 
 const supabase = createClient();
 
 async function addCard(title: string, content: string) {
   await supabase.auth.getUserIdentities();
-  const { data, error } = await supabase
+  const resultData = await supabase
     .from("card")
     .insert([{ title: title, content: content }]);
 
-  if (error) {
-    console.error("Error inserting data", error);
-    return;
+  console.log("resultData = ", resultData);
+
+  if (resultData.error) {
+    console.error("Error inserting data", resultData.error);
+    return resultData;
   }
 
-  return data;
+  return resultData;
 }
 
 const formSchema = z.object({
@@ -55,7 +59,19 @@ export function CreateMemoryCard() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    await addCard(values.title, values.content);
+    const card = await addCard(values.title, values.content);
+    if (card.status > 200 && card.status < 300) {
+      router.push("/");
+      return;
+    }
+
+    toast(`카드가 생성되지 않았습니다.`, {
+      description: "카드 생성 에러",
+      action: {
+        label: "확인",
+        onClick: () => console.log("Undo"),
+      },
+    });
   };
 
   return (
@@ -105,9 +121,6 @@ export function CreateMemoryCard() {
             </form>
           </Form>
         </CardContent>
-        {/*<CardFooter className="flex justify-end">*/}
-        {/*  <Button>카드 생성</Button>*/}
-        {/*</CardFooter>*/}
       </Card>
     </div>
   );

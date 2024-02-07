@@ -11,7 +11,7 @@ interface NavigationLoginProps {
 
 export const NavigationLogin = ({ session }: NavigationLoginProps) => {
   const [isMounted, setIsMounted] = useState(false);
-  console.log("isMounted = ", isMounted);
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
