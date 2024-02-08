@@ -34,7 +34,7 @@ async function signUpNewUser(email: string, password: string) {
     email: email,
     password: password,
     options: {
-      emailRedirectTo: "https://example.com/welcome",
+      emailRedirectTo: "/",
     },
   });
 

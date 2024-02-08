@@ -9,22 +9,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/data-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
-import { currentProfile, User } from "@/lib/current-profile";
-import { initialProfile } from "@/lib/initial-profile";
-// import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase/supabase";
 
-export default function DashboardPage() {
-  // const [user, setUser] = useState<User | null>(null);
-  //
-  // useEffect(() => {
-  //   const loadUserProfile = async () => {
-  //     const userProfile = await currentProfile();
-  //     setUser(userProfile);
-  //   };
-  //
-  //   loadUserProfile();
-  // }, []);
+async function getCard() {
+  await supabase.auth.getUserIdentities();
+  const resultData = await supabase
+    .from("card")
+    .select()
+    .order("created_at", { ascending: false }) // 최신순 정렬
+    .limit(10); // 결과를 10개로 제한
 
+  console.log("resultData = ", resultData.data);
+
+  if (resultData.error) {
+    console.error("Error inserting data", resultData.error);
+    return resultData;
+  }
+
+  return resultData;
+}
+
+export default async function DashboardPage() {
+  await getCard();
   return (
     <>
       <div className="hidden flex-col md:flex">
