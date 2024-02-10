@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -10,6 +12,12 @@ import { CalendarDateRangePicker } from "@/components/data-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
 import { supabase } from "@/lib/supabase/supabase";
+import { useEffect, useState } from "react";
+import {
+  PostgrestResponseFailure,
+  PostgrestResponseSuccess,
+} from "@supabase/postgrest-js";
+import { any, undefined } from "zod";
 
 async function getCard() {
   await supabase.auth.getUserIdentities();
@@ -29,10 +37,53 @@ async function getCard() {
   return resultData;
 }
 
-export default async function DashboardPage() {
-  await getCard();
+export default function DashboardPage() {
+  const [isMounted, setIsMounted] = useState(false);
+  const [cards, setCards] = useState<
+    PostgrestResponseFailure | PostgrestResponseSuccess<any[]>
+  >();
+
+  // useEffect(() => {
+  //   setIsMounted(true);
+  //
+  //   async function fetchAndSetCard() {
+  //     const data = await getCard();
+  //     console.log("data = ", data);
+  //   }
+  //   fetchAndSetCard();
+  //   return () => setIsMounted(false); // cleanup 함수에서 isMounted를 false로 설정
+  // }, []);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const fetchData = async () => {
+      try {
+        const data = await getCard(); // 가정된 비동기 함수
+        console.log("data = ", data);
+        if (isMounted) {
+          setCards(data);
+        }
+      } catch (error) {
+        console.error("데이터를 불러오는 중 오류가 발생했습니다.", error);
+      }
+    };
+
+    fetchData();
+
+    return () => setIsMounted(false); // cleanup 함수에서 isMounted를 false로 설정
+  }, []);
+
+  if (!cards) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <>
+      <div>{cards.status}</div>
       <div className="hidden flex-col md:flex">
         {/*본문*/}
         <div className="flex-1 space-y-4 p-8 pt-6">
