@@ -1,40 +1,29 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CalendarDateRangePicker } from "@/components/data-range-picker";
-import { Overview } from "@/components/overview";
-import { RecentSales } from "@/components/recent-sales";
-import { supabase } from "@/lib/supabase/supabase";
-import { useEffect, useState } from "react";
-import {
-  PostgrestResponseFailure,
-  PostgrestResponseSuccess,
-} from "@supabase/postgrest-js";
-import { any, undefined } from "zod";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {CalendarDateRangePicker} from "@/components/data-range-picker";
+import {Overview} from "@/components/overview";
+import {RecentSales} from "@/components/recent-sales";
+// import { supabase } from "@/lib/supabase/supabase";
+import {useEffect, useState} from "react";
+import {PostgrestResponseFailure, PostgrestResponseSuccess,} from "@supabase/postgrest-js";
 
 async function getCard() {
-  await supabase.auth.getUserIdentities();
-  const resultData = await supabase
-    .from("card")
-    .select()
-    .order("created_at", { ascending: false }) // 최신순 정렬
-    .limit(10); // 결과를 10개로 제한
-
-  console.log("resultData = ", resultData.data);
-
-  if (resultData.error) {
-    console.error("Error inserting data", resultData.error);
-    return resultData;
-  }
-
-  return resultData;
+  // await supabase.auth.getUserIdentities();
+  // const resultData = await supabase
+  //   .from("card")
+  //   .select()
+  //   .order("created_at", { ascending: false }) // 최신순 정렬
+  //   .limit(10); // 결과를 10개로 제한
+  //
+  //
+  // if (resultData.error) {
+  //   console.error("Error inserting data", resultData.error);
+  //   return resultData;
+  // }
+  //
+  // return resultData;
 }
 
 export default function DashboardPage() {
@@ -59,10 +48,9 @@ export default function DashboardPage() {
     const fetchData = async () => {
       try {
         const data = await getCard(); // 가정된 비동기 함수
-        console.log("data = ", data);
-        if (isMounted) {
-          setCards(data);
-        }
+        // if (isMounted) {
+        //   setCards(data);
+        // }
       } catch (error) {
         console.error("데이터를 불러오는 중 오류가 발생했습니다.", error);
       }

@@ -8,9 +8,9 @@ import { NavigationLogin } from "@/components/navigation/navigation-login";
 import { currentProfile } from "@/lib/current-profile";
 
 export const MainHeader = async () => {
-  const currentUser = await currentProfile();
+  // const currentUser = await currentProfile();
 
-  const session = currentUser?.data?.session;
+  // const session = currentUser?.data?.session;
 
   return (
     <>
@@ -21,7 +21,7 @@ export const MainHeader = async () => {
           <div className="ml-auto flex items-center space-x-4">
             <Search />
             <UserNav />
-            {session ? <NavigationLogin session={session} /> : null}
+            {/*{session ? <NavigationLogin session={session} /> : null}*/}
             <ModeToggle />
           </div>
         </div>
